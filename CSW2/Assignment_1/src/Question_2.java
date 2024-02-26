@@ -11,7 +11,7 @@ public class Question_2 {
 	public static void main(String[] args) {
 		Rectangle r1=new Rectangle(2,3);
 		System.out.println("Area: "+r1.area()+"\nPerimeter: "+r1.perimeter());
-		System.out.println("This is an added line.")
+		System.out.println("This is an added line.");
 
 	}
 
