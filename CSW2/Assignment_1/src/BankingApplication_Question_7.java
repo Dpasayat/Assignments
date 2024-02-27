@@ -18,7 +18,20 @@ public class BankingApplication_Question_7
 
 	public static void main(String[] args) 
 	{
-		
+		Account a1=new SavingsAccount("42210929384",2000.1f,1.5f);
+		Account a2=new CurrentAccount("52636477475",30000.0f,2000f);
+		System.out.println("\nDemo for Savings account..");
+		System.out.println(a1);
+		a1.deposit(500);
+		a1.withdrawal(2000);
+		a1.withdrawal(1000);
+		System.out.println("\nDemo for current account..");
+		System.out.println(a2);
+		a2.deposit(500);
+		a2.withdrawal(30000);
+		a2.withdrawal(1000);
+		a2.withdrawal(1000);
+		a2.withdrawal(1000);
 
 	}
 
@@ -26,15 +39,21 @@ public class BankingApplication_Question_7
 
 abstract class Account
 {
-	private int accno;
+	private String accno;
 	private float bal;
 	
-	abstract public void deposit();
-	abstract public void withdrawal();
-	public int getAccno() {
+	public Account(String accno, float bal) 
+	{
+		this.accno=accno;
+		this.bal=bal;
+		
+	}
+	abstract public void deposit(float amt);
+	abstract public void withdrawal(float amt);
+	public String getAccno() {
 		return accno;
 	}
-	public void setAccno(int accno) {
+	public void setAccno(String accno) {
 		this.accno = accno;
 	}
 	public float getBal() {
@@ -43,26 +62,88 @@ abstract class Account
 	public void setBal(float bal) {
 		this.bal = bal;
 	}
+	@Override
+	public String toString() {
+		return "Account No.: " + accno + ", Bal=" + bal;
+	}
 	
 	
 }
 
 class SavingsAccount extends Account
 {
-	private static final float ir=2.5f;
+	private float ir;
+	 public SavingsAccount(String accNo, float bal, float ir) {
+	        super(accNo, bal);
+	        this.ir = ir;
+	    }
 
 	@Override
-	public void deposit() 
+	public void deposit(float amt) 
 	{
-		setBal(getBal()+ir*getBal());
+		setBal(getBal()+(ir/100)*amt+amt);
+		System.out.println("Rs. "+amt +" deposited, Balance: "+getBal());
 		
 	}
 
 	@Override
-	public void withdrawal() 
+	public void withdrawal(float amt) 
 	{
-		
+		if(getBal()>=amt )
+		{
+			setBal(getBal()-amt);
+			System.out.println("Rs. "+amt+" is deducted. Balance: Rs."+getBal());
+		}
+		else
+		{
+			System.out.println("Rs."+amt+" cannot be withdrawn. Insufficient Balance");
+		}
 		
 	}
+
+	@Override
+	public String toString() {
+		return "Savings Account :-\n"+ super.toString() + ", Interest rate: "+ir;
+	}
+	
+	
+}
+
+class CurrentAccount extends Account
+{
+
+	private float overdraftLimit;
+	public CurrentAccount(String accno, float bal,float overdraftLimit) 
+	{
+		super(accno, bal);
+		this.overdraftLimit=overdraftLimit;
+		
+	}
+	@Override
+	public void deposit(float amt) 
+	{
+		setBal(getBal()+amt);
+		System.out.println("Rs. "+amt +" deposited, Balance: "+getBal());
+		
+	}
+	@Override
+	public void withdrawal(float amt) 
+	{
+		if(getBal()-amt >= -overdraftLimit)
+		{
+			setBal(getBal()-amt);
+			System.out.println("Rs. "+amt+" is deducted. Balance: "+getBal());
+		}
+		else
+		{
+			System.out.println("Rs."+amt+" cannot be withdrawn. Overdraft Limit Exceeded.");
+		}
+		
+	}
+	@Override
+	public String toString() {
+		return "Current Account:-\n"+ super.toString() + ", Overdraft Limit: "+overdraftLimit;
+	}
+	
 	
 }
