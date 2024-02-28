@@ -5,7 +5,7 @@
 //instantiation, the CarTester class should retrieve and print the initial make and model of both 
 //cars. Then, it should set new values for myCar2 using setter methods and print the updated 
 //make and model
-
+ 
 
 
 
@@ -13,8 +13,8 @@
 
 public class myCarTester{
 	public static void main(String []Args) {
-		Car myCar1=new Car("Audi",1980);
-		Car myCar2=new Car();
+		My_Car myCar1=new My_Car("Audi",1980);
+		My_Car myCar2=new My_Car();
 		System.out.println("_________________________________________");
 		System.out.println(myCar1);
 		System.out.println(myCar2);
@@ -30,19 +30,19 @@ public class myCarTester{
 
 
 
-class Car
+class My_Car
 {
 	private String model;
 	private int make;
 	
-	Car()
+	My_Car()
 	{
 		make=0;
 		model="";
 		
 	}
 	
-	Car(String model, int make) {
+	My_Car(String model, int make) {
 		super();
 		this.model = model;
 		this.make = make;
