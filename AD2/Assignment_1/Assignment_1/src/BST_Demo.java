@@ -12,6 +12,9 @@ public class BST_Demo {
 		ob.postorder(BST.getRoot());
 		System.out.println("\nPreorder");
 		ob.preorder(BST.getRoot());
+//		ob.delete(4);
+//		ob.delete(6);
+		System.out.println("\n"+ob.inorderSuccessor(ob.getRoot()).info);
 
 	}
 
