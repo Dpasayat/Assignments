@@ -1,36 +1,42 @@
-package question_4;
+package question_5;
 
-import java.util.Scanner;
-import java.util.Objects;
 
-public class Q4 
+import java.util.*;
+
+
+
+public class Q5 
 {
 
 	public static void main(String[] args) 
 	{
 		Scanner sc=new Scanner(System.in);
-		Student[] arr= {new Student("Dhiraj","6218",98), new Student("Ayush","6221",99),new Student("Anupam","6219",97)};
-		System.out.println("Enter Roll number to search(6218,6219,6221): ");
-		String rollKey=sc.next();
-		boolean found=false;
+		Student[] arr= {new Student("Dhiraj","6218",98), new Student("Ayush","6221",99),new Student("Anupam","6219",97),
+				new Student("Anand","9398",69),new Student("Rakesh","6502",75),
+				new Student("Abhigyan","3204",100)};
+		
+		for(int i=0;i<arr.length-1;i++)
+		{
+			for(int j=i+1;j<arr.length;j++)
+			{
+				if(arr[i].compareTo(arr[j])==1)
+				{
+					Student temp=arr[i];
+					arr[i]=arr[j];
+					arr[j]=temp;
+				}
+			}
+		}
 		for(int i=0;i<arr.length;i++)
 		{
-			if(arr[i].getRn().equals(rollKey))
-			{
-				System.out.println(arr[i]);
-				found=true;
-				break;
-			}		
-			
-		}
-		if(!found)
-		{
-			System.out.println("Student not found.....");
+			System.out.println(arr[i]);
 		}
 		sc.close();
+
 	}
 
 }
+
 
 class Student implements Comparable<Student>
 {
@@ -99,19 +105,21 @@ class Student implements Comparable<Student>
 	@Override
 	public int compareTo(Student o) 
 	{
-		if(this.equals(o))
-			return 0;
+		if(Integer.parseInt(this.getRn())<Integer.parseInt(o.getRn()))
+		{
+			return -1;
+		}
+		else if(Integer.parseInt(this.getRn())>Integer.parseInt(o.getRn()))
+		{
+			return 1;
+		}
 		else
 		{
-			if(this.getRn().equals(o.getRn()))
-				return 0;
-			else 
-				return -1;
+			return 0;
 		}
 	}
 	
 	
-	
-	
-	
 }
+
+
