@@ -23,6 +23,8 @@ public class Q3
 		System.out.println("Cars List before sorting WRT age: \n"+list);
 		list.sort();
 		System.out.println("Cars List after sorting WRT age: \n"+list);
+//		Collections.sort(list,new CarModelComparator());
+//		
 		
 		
 
@@ -66,6 +68,23 @@ class Car implements Comparable<Car>
 	@Override
 	public String toString() {
 		return ModalNo+" "+name+" "+stock+"\n";
+	}
+	
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(ModalNo, name, stock);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Car other = (Car) obj;
+		return ModalNo == other.ModalNo && Objects.equals(name, other.name) && stock == other.stock;
 	}
 	
 	@Override
@@ -120,4 +139,20 @@ class CarApp
 	}
 	
 }
+
+//class CarModelComparator implements Comparator<Car>
+//{
+//
+//	@Override
+//	public int compare(Car o1, Car o2) 
+//	{
+//		if(o1.equals(o2))
+//		return 0;
+//		else if(o1.getModalNo()<o2.getModalNo()) return -1;
+//		else if(o1.getModalNo()==o2.getModalNo()) return 0;
+//		else return 1;
+//	}
+//	
+//}
+
 
