@@ -183,8 +183,6 @@ class SmartWatch  extends NetworkDevAbstract implements NetworkDevInterface
 	@Override
 	public void release_IP_port() 
 	{
-		assignedIPs.remove(this.IP);
-		assignedPorts.remove(this.port);
 		
 	}
 
