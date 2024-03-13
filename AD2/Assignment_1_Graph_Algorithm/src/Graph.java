@@ -123,7 +123,7 @@ public class Graph {
 			
 		}
     	visited[u]="G";
-		System.out.println(u+" ");
+		System.out.print("<-"+u);
     	
     }
     
@@ -159,6 +159,7 @@ public class Graph {
         }
         System.out.println("\nPerforming DFS and printing path: ");
         graph.DFS(0);
+        
         
     }
 }
