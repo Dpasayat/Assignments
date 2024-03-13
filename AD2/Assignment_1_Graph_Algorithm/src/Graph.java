@@ -104,6 +104,8 @@ public class Graph {
     		pred[i]=-1;
     		visited[i]="W";
     	}
+    	dfsVisit(s,pred,visited);
+    	
     }
     public void dfsVisit(int u,int[] pred, String[] visited)
     {
@@ -114,9 +116,14 @@ public class Graph {
 			if(visited[v]=="W")
 			{
 				visited[v]="B";
+				pred[v]=u;
+				dfsVisit(v,pred,visited);
 				
 			}
+			
 		}
+    	visited[u]="G";
+		System.out.println(u+" ");
     	
     }
     
@@ -150,6 +157,8 @@ public class Graph {
         	graph.printPath(0, i);
         	
         }
+        System.out.println("\nPerforming DFS and printing path: ");
+        graph.DFS(0);
         
     }
 }
