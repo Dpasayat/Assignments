@@ -10,10 +10,22 @@ public class Q7
 		personMap.put("Dhiraj", new Address("C/15","Balijodi","Tangarpali"));
 		// the below line does not create a new entry in the map, it just updates the value of the corresponding key
 //		personMap.put("Dhiraj", new Address("C/14","Jalda","Sundargarh"));
-		for(Map.Entry<String, Address> entry: personMap.entrySet())
+		
+		
+		Set<?> set1=personMap.entrySet();
+		Iterator<?> i=set1.iterator();
+		while(i.hasNext())
 		{
-			System.out.println(entry.getKey()+" => "+entry.getValue());
+			Map.Entry<?,?> m1=(Map.Entry<?,?>)i.next();
+			System.out.println(m1.getKey()+" => "+m1.getValue());
 		}
+		
+		// below code also works!!!!
+		
+//		for(Map.Entry<String, Address> entry: personMap.entrySet())
+//		{
+//			System.out.println(entry.getKey()+" => "+entry.getValue());
+//		}
 		
 
 	}
