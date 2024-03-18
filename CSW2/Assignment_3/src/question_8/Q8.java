@@ -6,7 +6,7 @@ public class Q8
 	public static void main(String[] args) 
 	{
 		String s1="College";
-		String s2="gellco";
+		String s2="gellcoe";
 		HashMap<Character,Integer> h1=new HashMap<>();
 		HashMap<Character,Integer> h2=new HashMap<>();
 		for(Character c:s1.toCharArray())
@@ -17,7 +17,7 @@ public class Q8
 			}
 			else
 			{
-				Integer val=h1.get(c);
+				Integer val=h1.get(Character.toLowerCase(c));
 				val+=1;
 				h1.put(Character.toLowerCase(c),val);
 			}
@@ -30,7 +30,7 @@ public class Q8
 			}
 			else
 			{
-				Integer val=h2.get(c);
+				Integer val=h2.get(Character.toLowerCase(c));
 				val+=1;
 				h2.put(Character.toLowerCase(c),val);
 			}
