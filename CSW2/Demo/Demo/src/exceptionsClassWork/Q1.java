@@ -17,7 +17,7 @@ public class Q1 {
 			l.addStudent(s3);
 			l.addStudent(s4);
 		} 
-		catch (InvalidStudentException e) 
+		catch (InvalidStudentExceptionUnch e) 
 		{
 			
 			e.printStackTrace();
@@ -31,7 +31,7 @@ public class Q1 {
 			l.emptySpot();
 			l.addStudent(new Student());
 		}
-		catch (InvalidStudentException e) 
+		catch (InvalidStudentExceptionUnch e) 
 		{
 			
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class Q1 {
 			
 			
 		}
-		catch (InvalidStudentException e) 
+		catch (InvalidStudentExceptionUnch e) 
 		{
 			
 			e.printStackTrace();
@@ -64,18 +64,18 @@ class Lecture
 		this.roomno=roomno;
 	}
 	static int idx=-1;
-	public void addStudent(Student s)throws InvalidStudentException
+	public void addStudent(Student s)throws InvalidStudentExceptionUnch
 	{
 		++idx;
 		if(idx>=studList.length)
-			throw new InvalidStudentException("Cannot admit more than 3 students.");
+			throw new InvalidStudentExceptionUnch("Cannot admit more than 3 students.");
 		studList[idx]=s;
 	}
-	public void emptySpot() throws InvalidStudentException
+	public void emptySpot() throws InvalidStudentExceptionUnch
 	{
 		--idx;
 		if(idx<0)
-			throw new InvalidStudentException("Lecture is already empty");
+			throw new InvalidStudentExceptionUnch("Lecture is already empty");
 	}
 	@Override
 	public String toString() {
@@ -91,9 +91,9 @@ class Lecture
 class Student 
 {
 	String name;int age;
-	Student()throws InvalidStudentException
+	Student()throws InvalidStudentExceptionUnch
 	{
-		throw new InvalidStudentException("Student name cannot be empty");
+		throw new InvalidStudentExceptionUnch("Student name cannot be empty");
 		
 	}
 	Student(String name,int age)
@@ -102,14 +102,14 @@ class Student
 		this.name=name;
 		this.age=age;
 	}
-	public static void addStudent(Student s) throws InvalidStudentException
+	public static void addStudent(Student s) throws InvalidStudentExceptionUnch
 	{
 		if(s.age<0 || s.age>40)
 		{
-			throw new InvalidStudentException("Invalid age..");
+			throw new InvalidStudentExceptionUnch("Invalid age..");
 		}
 		if(s.name=="")
-			throw new InvalidStudentException("Invalid name..");
+			throw new InvalidStudentExceptionUnch("Invalid name..");
 		
 		
 	}
@@ -119,17 +119,17 @@ class Student
 	}
 	
 }
-class InvalidStudentException extends Exception
+class InvalidStudentExceptionUnch extends Exception
 {
-	InvalidStudentException(String msg)
+	InvalidStudentExceptionUnch(String msg)
 	{
 		super(msg);
 	}
-	InvalidStudentException(String msg,Exception e)
+	InvalidStudentExceptionUnch(String msg,Exception e)
 	{
 		super(msg,e);
 	}
-	InvalidStudentException()
+	InvalidStudentExceptionUnch()
 	{
 		super();
 	}
