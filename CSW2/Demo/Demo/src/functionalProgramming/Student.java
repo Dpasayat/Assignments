@@ -19,26 +19,60 @@ public class Student
 	public static void main(String[] args) 
 	{
 		double[] marks1= {9.0,9.8,9.9,10.0};
+		double[] marks2= {9.0,9.80};
 		Student s1=new Student("Dhiraj",20,"Btech",marks1) ;
+		Student s2=new Student("Jhon",24,"Mtech",marks2);
+		cgpaBtech btech=new cgpaBtech();
+		cgpaMtech mtech=new cgpaMtech();
+		s1.awardStudent(btech);
+		System.out.println(s1+"\nMarks: "+Arrays.toString(s1.marks));
+		System.out.println("CGPA: "+s1.cgpa);
+		s2.awardStudent(mtech);
+		System.out.println(s2+"\nMarks: "+Arrays.toString(s2.marks));
+		System.out.println("CGPA: "+s2.cgpa);
+		
+		double[] marks3= {3.3,4.4,5.0};
+		Student s3=new Student("Neha",24,"Agera Wagera",marks3);
+		//example of anonymous class
+		s3.awardStudent(new cgpa_Students() {
+			
+			public double calc_cgpa(Student s) 
+			{
+				return (s.marks[0]+s.marks[1]+s.marks[2])/3*2;
+			} 
+		});
+		System.out.println(s3+"\nMarks: "+Arrays.toString(s3.marks));
+		System.out.println("CGPA: "+s3.cgpa);
+		
+		//example of lambda expression:
+		cgpa_Students ark=(Student s)->{
+			
+			return s.cgpa=(s.marks[0]+s.marks[1]+s.marks[2])/3*2;
+		};
+		Student s4=new Student("Sneha",24,"B.Arch",marks3);
+		s4.awardStudent(ark);
+		System.out.println(s4+"\nMarks: "+Arrays.toString(s4.marks));
+		System.out.println("CGPA: "+s4.cgpa);
 		
 				
 
 	}
-	public void calc_cgpa(cgpa_Students e)
+	public void awardStudent(cgpa_Students e)
 	{
-		if(course == "Btech")
-		{
-			cgpaBtech bt=new cgpaBtech();
-			this.cgpa=bt.calc_cgpa(this);
-		}
-		else if(course=="Mtech")
-		{
-			cgpaMtech mt=new cgpaMtech();
-			this.cgpa=mt.calc_cgpa(this);
-		}
+//		if(course == "Btech")
+//		{
+//			cgpaBtech bt=new cgpaBtech();
+//			this.cgpa=bt.calc_cgpa(this);
+//		}
+//		else if(course=="Mtech")
+//		{
+//			cgpaMtech mt=new cgpaMtech();
+//			this.cgpa=mt.calc_cgpa(this);
+//		}
+		this.cgpa=e.calc_cgpa(this);
 		
 	}
-	public int awardStudent(cgpa_Students cs)
+	public int grade(cgpa_Students cs)
 	{
 		this.cgpa=cs.calc_cgpa(this);
 		if(cgpa>9)
@@ -48,6 +82,12 @@ public class Student
 		else return 4;
 		
 	}
+
+	@Override
+	public String toString() {
+		return "---------------------------\n"+"name: " + name + "\nCourse: " + course + "\nAge: " + age;
+	}
+	
 
 }
 
