@@ -1,6 +1,7 @@
 package functionalProgramming;
 
 import java.util.Arrays;
+import java.util.function.Function;
 
 public class Student 
 {
@@ -44,31 +45,23 @@ public class Student
 		System.out.println(s3+"\nMarks: "+Arrays.toString(s3.marks));
 		System.out.println("CGPA: "+s3.cgpa);
 		
-		//example of lambda expression:
-		cgpa_Students ark=(Student s)->{
+		//example of lambda expression: we use a built in Function interface in util.Functions
+		Function<Student,Double> ark=(Student s)->{
 			
 			return s.cgpa=(s.marks[0]+s.marks[1]+s.marks[2])/3*2;
 		};
 		Student s4=new Student("Sneha",24,"B.Arch",marks3);
-		s4.awardStudent(ark);
+		s4.cgpa=ark.apply(s4);
 		System.out.println(s4+"\nMarks: "+Arrays.toString(s4.marks));
 		System.out.println("CGPA: "+s4.cgpa);
+		
+		
 		
 				
 
 	}
 	public void awardStudent(cgpa_Students e)
 	{
-//		if(course == "Btech")
-//		{
-//			cgpaBtech bt=new cgpaBtech();
-//			this.cgpa=bt.calc_cgpa(this);
-//		}
-//		else if(course=="Mtech")
-//		{
-//			cgpaMtech mt=new cgpaMtech();
-//			this.cgpa=mt.calc_cgpa(this);
-//		}
 		this.cgpa=e.calc_cgpa(this);
 		
 	}
