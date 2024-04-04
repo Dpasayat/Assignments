@@ -29,7 +29,7 @@ public class RabinKarp
         {
             if (p == t) 
             {
-                // Perform character-by-character matching
+                // Perform character-by-character matching to check if it is Actual hit or Spurious hit
                 for (j = 0; j < m; j++) 
                 {
                     if (txt.charAt(i + j) != pattern.charAt(j))
