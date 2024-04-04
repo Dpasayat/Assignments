@@ -1,5 +1,6 @@
 package stringMatchingAlgorithm;
 import java.util.*;
+//below is code for RabinKarp Matching without using the modular logic
 public class RobinKarp 
 {
 
@@ -8,6 +9,8 @@ public class RobinKarp
 		String s="abacbcaccbcabc";
 		String p="cbc";
 		notRKMatching(s,p);
+		notRKMatching("abcaabccabcba","abc");
+		notRKMatching("aaaaaaa","aaa");
 	}
 	//below is not robin karp
 	public static void notRKMatching(String s,String p)
@@ -35,6 +38,7 @@ public class RobinKarp
 			}
 			index++;
 		}
+//		System.out.println(code);
 		//encoding string
 		index=0;
 		for(char ch:sarr)
@@ -50,21 +54,27 @@ public class RobinKarp
 			}
 			index++;
 		}
+//		System.out.println(code);
+//		System.out.println(Arrays.toString(sIntArr)+"\n"+Arrays.toString(pIntArr));
 		//matching algorithm
 		for(int i=0;i<pIntArr.length;i++)
 		{
 			pnum=pnum*10+pIntArr[i];
 			tnum=tnum*10+sIntArr[i];
 		}
+		int h=1; int d=10;
+		for (int i = 0; i < p.length() - 1; i++)
+            h = (h * d);
 		for(int sh=0;sh<sIntArr.length-pIntArr.length;sh++)
 		{
-			System.out.println(pnum+" "+tnum);
+//			System.out.println(pnum+" "+tnum);
 			if(pnum==tnum)
-				System.out.println(sh);
-			tnum= (tnum-(sIntArr[sh]*(int) Math.pow(10, p.length()-1)))*10 +sIntArr[sh+1] ;
+				System.out.print(sh+" ");
+			tnum= (tnum-(sIntArr[sh]*h))*10 +sIntArr[sh+p.length()] ;
+//			System.out.println("tnum="+tnum);
 			
 		}
-		
+		System.out.println();
 	}
 
 }
