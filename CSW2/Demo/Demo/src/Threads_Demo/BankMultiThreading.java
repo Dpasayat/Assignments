@@ -16,7 +16,7 @@ public class BankMultiThreading extends Thread
 		}
 	}
 	
-	public void transfer(int from, int to, double amount)
+	public synchronized void transfer(int from, int to, double amount)
 	{
 		if(accounts[from]>=amount)
 		{
