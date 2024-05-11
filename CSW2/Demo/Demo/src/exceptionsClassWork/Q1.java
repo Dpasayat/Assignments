@@ -121,6 +121,10 @@ class Student
 }
 class InvalidStudentExceptionUnch extends Exception
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	InvalidStudentExceptionUnch(String msg)
 	{
 		super(msg);
