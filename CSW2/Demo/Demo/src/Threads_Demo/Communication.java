@@ -63,8 +63,9 @@ class Communicator
 		String lock = "Sr";
 	public void send(String s) throws InterruptedException
 	{
-		synchronized(lock)
+		synchronized(lock)//this is a simple synchronized block, similar to the previous implementation, this implementation is helpful when there is only one or two lines that are important
 		{
+			//we could also use synchronize(this){} 
 			while(written) lock.wait(); // finally it works!!! 😒
 			message=s;
 			
