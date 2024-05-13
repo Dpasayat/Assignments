@@ -9,11 +9,11 @@ public class Demo2 extends Thread
 		Thread t = new Thread(new worker());
 		t.setPriority(MAX_PRIORITY);
 		t.start();
-		Runnable r = ()->{printEven(50);};
+		Runnable r = ()->{printEven(50);}; // creating a runnable anonymous class
 		Thread t3 = new Thread(r);
 		t3.start();
 		Thread t2= new Thread(new worker2(true));
-		t2.setPriority(MIN_PRIORITY);
+		t2.setPriority(MIN_PRIORITY); //sets priority of the the Thread.
 		t2.start();
 		for(int i=0;i<=12;i++)
 		{
@@ -79,6 +79,7 @@ public class Demo2 extends Thread
 	}
 
 }
+
 class worker implements Runnable
 {
 	Demo2 ob = new Demo2();

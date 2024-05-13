@@ -1,6 +1,18 @@
 package Threads_Demo;
-
-public class Communication{
+/*
+ * -Here we use lock.wait() and lock.notifyAll() to ensure that sent is executed first then receive in alternate manner.
+ * -We also use a written flag to implement it.
+ * -Using while(written); on its own does not work, as there is not a guarantee that both method work alternatively.
+ * also the above method does not work at all and is inconsistent as hell, I don't know why but it is
+ * -Using lock.wait() ensures that CPU is not busy-waiting, which is more efficient.
+ * -lock's method only works in a synchronized block, hence it is wrapped in one. 
+ * 
+ * -on a small note, the written flag should be set to false first to ensure that sent is run before receive.
+ * -also lock can be implemented using any random object as wait() and notifyAll() function is present in Object class
+ * try it yourself, I don't want to right now...
+ */
+public class Communication
+{
 	
 
 	
@@ -13,11 +25,10 @@ public class Communication{
 			for(int i=0; i<secrets.length; i++)
 			{
 				secrets[i]=Integer.toString(i);
-				System.out.println("Sent: "+secrets[i]);
+				
 				try {
 					c.send(secrets[i]);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -29,7 +40,6 @@ public class Communication{
 				try {
 					c.receive();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -37,11 +47,10 @@ public class Communication{
 		};
 		Thread st= new Thread(sender);
 		Thread rv= new Thread(receiver);
-		rv.start();
 		st.start();
+		rv.start();
 		
-		st.join();
-//		t2.exit();
+
 
 	}
 	
@@ -51,17 +60,31 @@ class Communicator
 {
 		static String message;
 		static boolean written=false;
+		String lock = "Sr";
 	public void send(String s) throws InterruptedException
 	{
-		while(written);
-		message=s;
-		Communicator.written=true;
+		synchronized(lock)
+		{
+			while(written) lock.wait(); // finally it works!!! 😒
+			message=s;
+			
+			Communicator.written=true;
+			System.out.println("Sent: "+message);
+			lock.notifyAll();//this is an important statement!!
+			
+		}
 	}
 	public void receive() throws InterruptedException
 	{
-		while(!written);
-		Communicator.written=false;
-		System.out.println("Received: "+message);
+		synchronized(lock)
+		{
+			while(!written) lock.wait();;
+			
+			Communicator.written=false;
+			System.out.println("Received: "+message);
+			lock.notifyAll();//this too is important;
+			
+		}
 	}
 
 }
