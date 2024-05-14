@@ -57,10 +57,12 @@ public class MatrixMultiplication
 			for (int j = 0; j < column2; j++) 
 			{
 				result[i][j] = 0;
-				for (int k = 0; k < column1; k++) 
-				{
-					result[i][j] += matrix1[i][k] * matrix2[k][j];
-				}
+				Runnable r = ()->{
+					for (int k = 0; k < column1; k++) 
+					{
+						result[i][j] += matrix1[i][k] * matrix2[k][j];
+					}
+				};
 			}
 		}
 		return result;
