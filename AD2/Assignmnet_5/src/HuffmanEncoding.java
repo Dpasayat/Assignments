@@ -34,7 +34,7 @@ public class HuffmanEncoding
 		printTree(root.right,s+"1");
 	}
 	
-	public void HuffmanTree(char[] sym, int[]freq)
+	public HuffmanNode HuffmanTree(char[] sym, int[]freq)
 	{
 		PriorityQueue<HuffmanNode> pq = new PriorityQueue<>();
 		
@@ -57,7 +57,7 @@ public class HuffmanEncoding
 		}
 		
 		printTree(pq.peek(),"");
-		
+		return pq.peek();
 		
 	}
 	
@@ -73,7 +73,7 @@ public class HuffmanEncoding
 				temp=temp.right;
 			if(temp.right==null && temp.left==null)
 			{
-				System.out.println(temp.ch);
+				System.out.print(temp.ch);
 				temp=root;
 			}
 			
@@ -85,10 +85,19 @@ public class HuffmanEncoding
 		char[] sym = {'c','a','k','t','r'};
 		int[] freq = {75,30,105,280,110};
 		HuffmanEncoding hq=new HuffmanEncoding ();
-		hq.HuffmanTree(sym,freq);
-		
+		HuffmanNode root=hq.HuffmanTree(sym,freq);
+		String code="01011101111110";
+		System.out.println("Decode "+code+" : ");
+		hq.decode(code, root);
 
 	}
 
 }
 
+
+//output:
+// t : 0
+// r : 10
+// k : 110
+// a : 1110
+// c : 1111
