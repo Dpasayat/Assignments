@@ -109,7 +109,7 @@ public class MatrixMultiplication
 		int[][] result = new int[row1][column1];
 		
 		Thread td = null;
-		ExecutorService executor = new ExecutorService.newFixedThread(4);
+		ExecutorService executor = Executors.newFixedThreadPool(4);
 		ArrayList<Thread> tdArr=new ArrayList<>();
 
 		for (int i = 0; i < row1; i++) 
