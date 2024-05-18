@@ -28,7 +28,7 @@ public class fututeExample
 		}
 		System.out.println(s.isDone());
 		
-		CompletableFuture<String> x= p.thenApplyAsync((s)->{System.out.println(result);});
+		CompletableFuture<String> p= p.thenApplyAsync((s)->{System.out.println(s);});
 
 	}
 
