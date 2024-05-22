@@ -86,7 +86,7 @@ public class Weighted_Interval_Scheduling
             return Math.max((I_L[j-1].wt+Compute_opt(I_L[j-1].p,I_L)),Compute_opt(j-1,I_L));
     }
 	public static void main(String[] args) {
-		System.out.println("Hello World");
+		// System.out.println("Hello World");
 		int jobno[]={1,2,3,4,5,6};
 		int wt[]={4,4,1,7,2,2};
 		int st[]={2,4,7,3,1,6};
