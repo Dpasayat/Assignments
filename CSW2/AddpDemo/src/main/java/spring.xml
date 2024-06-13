@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans   xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+   
+   
+   
+	<bean id="vehicle" class="com.dkp.AddpDemo.Car"></bean>
+	<bean id="tyre" class="com.dkp.AddpDemo.Tyre">
+		<property name="brand" value="MRF"></property>   <!-- this is setter injection-->
+		<constructor-arg value="17"></constructor-arg>   <!-- this is construction injection-->	
+	</bean>
+	
+	
+	
+</beans>
